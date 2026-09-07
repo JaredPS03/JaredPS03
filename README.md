@@ -1,11 +1,11 @@
 # Jared Silva
 
-**Full-stack developer — TypeScript, Next.js, and the database underneath.**
+Engineering student in Oaxaca, México. I build web applications with TypeScript and Next.js, usually with a
+database doing the interesting part.
 
-Software engineering student in Oaxaca, México, building production software for real organizations while I
-finish my degree. A nonprofit runs its fundraising auction on something I wrote. A gallery manages 350 artworks
-through a panel I built. I care about the part most portfolios skip: what happens after launch, when someone
-else has to maintain it.
+Most of what I've built has been for people outside a classroom: a fundraising auction for a nonprofit, a
+management panel for an art gallery, an open archive for indigenous languages. I'm still learning, and the
+projects below are the honest state of that.
 
 Open to junior developer roles and internships.
 
@@ -15,42 +15,40 @@ Open to junior developer roles and internships.
 
 ### 🏠 [Art Auction for a Cause](https://github.com/JaredPS03/TECHO) — [techoax.art](https://www.techoax.art/) · 2026
 
-Built and deployed as a volunteer for **TECHO Oaxaca**. TECHO works across 19 countries and has built housing
-with more than 150,000 families in Latin America.
+Built and deployed as a volunteer for **TECHO Oaxaca**, part of an organization that works across 19 countries
+and has built housing with more than 150,000 families in Latin America.
 
 `Next.js 16` · `TypeScript` · `MySQL` · `Tailwind CSS` · `Vercel`
 
 It replaced a process that ran on scattered WhatsApp messages and a handwritten tally of who was winning which
 piece. Public catalogue, bid registration with contact details, and an admin panel the team operates without
-touching the database — all built against requirements defined with the organization.
+touching the database — built against requirements defined with the organization.
 
-The decision worth defending is what I left out. Integrating a payment gateway would have meant fees on donated
-money, merchant registration and legal responsibility over other people's funds, for an organization with no
-technical staff that already closed deals by phone. So the platform solves what actually hurt — losing track of
-bids — and leaves the closing where it already worked.
+There is no payment gateway, and that was on purpose. It would have meant fees on donated money, merchant
+registration and legal responsibility over other people's funds, for an organization with no technical staff
+that already closed deals by phone. The platform handles the part that was actually failing — keeping track of
+bids — and leaves the rest where it worked.
 
-If you're reviewing the code, look at:
+A few things in the code I'd point at:
 
-- **Bids resolve inside a transaction with `SELECT ... FOR UPDATE`.** Without it, two simultaneous bids could
-  both clear the minimum against the same stale price, and the later write would *lower* it. An auction price
-  must never go backwards.
-- **The admin session is an HMAC-signed cookie**, compared in constant time. It used to store the admin's raw
-  UUID — which proves the id exists, but not that we issued the cookie.
-- **A measured 6.26 MB catalogue payload documented as a known limitation**, with the fix and an honest note on
-  why it hasn't shipped yet.
+- Bids are resolved inside a transaction using `SELECT ... FOR UPDATE`. Without it, two people bidding at the
+  same time could both clear the minimum against the same stale price, and the second write would lower it.
+- The admin session cookie is signed with HMAC and compared in constant time. It used to store the admin's UUID
+  as-is, which proves the id exists but not that the cookie came from us.
+- The README documents a measured 6.26 MB catalogue payload as a known limitation, along with the fix I haven't
+  shipped yet.
 
 ### 🖼 Arte de Oaxaca — E-commerce with augmented reality and CMS · 2025
 
-An online store and management panel for a gallery that handles **350 artworks** in catalogue and a history of
+An online store and management panel for a gallery handling **350 artworks** in catalogue and a history of
 **3,000+ inventory and sales records**.
 
 `Next.js` · `TypeScript` · `Tailwind CSS` · `Prisma`
 
-**Inventory reports went from 2–3 hours to 2 minutes**, and manual inventory tracking disappeared entirely. I
-also integrated an augmented reality view so buyers can preview a piece on their own wall before committing to
-it — the objection that kills most online art sales.
+Inventory reports went from taking 2–3 hours to about 2 minutes, and the manual inventory tracking went away. I
+also integrated an augmented reality view so a buyer can see a piece on their own wall before deciding.
 
-> Delivered to the client; not yet in production, so there is no public demo.
+> Delivered to the client; not yet in production, so there's no public demo.
 
 ### 🗣 DILLA — Open repository of indigenous languages · 2026 – present
 
@@ -59,45 +57,45 @@ research and documentary record.
 
 `Next.js` · `PostgreSQL` · `Prisma` · [dilla-web.vercel.app](https://dilla-web.vercel.app/)
 
-I modelled the PostgreSQL schema with Prisma and built an **asynchronous moderation queue** for user
-contributions — necessary because linguistic data submitted by the public needs expert review before it enters a
-record intended for research.
+I modelled the PostgreSQL schema with Prisma and built an asynchronous moderation queue for user contributions,
+since submissions need review before they become part of a record meant for research.
 
 ### 🍳 [Check — AI Kitchen Assistant](https://github.com/JaredPS03/Che-K) — [che-k.vercel.app](https://che-k.vercel.app/) · 2026
 
-A personal project, and the one to read if you want to see how I actually write and document code: it has the
-most complete public codebase, full architecture docs, CI and a test suite.
+A personal project. It has the most complete public codebase of the four, so it's probably the easiest one to
+actually read.
 
 `Next.js 16` · `TypeScript` · `Neo4j` · `Cypher` · `Google Gemini` · `pytest`
 
-Scan your fridge with the camera, find out what you can cook tonight, and follow the recipe step by step. Built
-on a graph database because the domain is a network of relationships, not a hierarchy.
+Scan your fridge with the camera, see what you can cook tonight, and follow the recipe step by step. I used a
+graph database because the data is mostly relationships — a user has ingredients, a recipe requires them.
 
-- **Cosine similarity over sparse ingredient vectors, computed entirely in Cypher** — no GDS library, no
-  client-side scoring. The same query also returns what you have and what you're missing, so the card renders
-  with zero extra round trips.
-- **Allergen filtering happens inside the query, before scoring.** A recipe you cannot eat never crosses the
-  network.
-- **61 unit tests written test-first.** The division-by-zero case was a failing test before it was a guard clause
-  in the query.
-- The relational-to-graph conversion is documented end to end, starting from the original SQL DDL.
+- Recipe matching is cosine similarity over sparse ingredient vectors, written entirely in Cypher. The same
+  query returns which ingredients you have and which you're missing, so the card renders without a second
+  request.
+- Allergen filtering happens inside the query rather than on the client, so a recipe you can't eat is never sent.
+- 61 unit tests covering the matching algorithm, including the empty-pantry and division-by-zero cases.
+- The conversion from the original relational schema to the graph model is documented step by step.
 
 ---
 
-## How I work
+## How I try to work
 
-**I write the "why", not just the "what".** My repos carry architecture docs explaining the decisions and what
-they cost — including the ones I'd make differently now.
+Nothing here is a principle I arrived with. They're all habits I picked up after doing the opposite first.
 
-**I document what's broken.** Every README has a *Known limitations* section with real numbers in it. A project
-that admits its weak points is more useful to whoever comes next than one that pretends.
+**Writing down why, not just what.** Coming back to my own code a few weeks later, I couldn't remember why I'd
+picked a graph database over Postgres. Now the reasoning goes in a doc next to the code, so the next person —
+often me — doesn't have to guess.
 
-**I turn the safety nets on.** Both public projects started from scaffolding that shipped
-`typescript.ignoreBuildErrors: true`. Both now fail the build on a type error, and CI runs type-check, build and
-tests on every push.
+**Saying what doesn't work yet.** My READMEs have a "known limitations" section. It started as a note to myself
+so I wouldn't forget the rough edges, and it's ended up being the part people ask about.
 
-**I read code before I change it.** The most valuable thing I found in my own auction project was a race
-condition nobody had reported yet.
+**Leaving the checks turned on.** Both public projects came from scaffolding with
+`typescript.ignoreBuildErrors: true`. Turning it off surfaced two real errors I'd been shipping without noticing,
+one of them an import of a module that didn't exist.
+
+**Reading before changing.** I found a race condition in the auction's bidding while writing documentation for
+it, not while building it. Explaining code slowly is how I catch what I missed the first time.
 
 ---
 
@@ -107,9 +105,7 @@ condition nobody had reported yet.
 
 **Frontend** — React · Next.js (App Router) · Tailwind CSS · Radix / shadcn/ui
 
-**Backend & data** — Node.js · Prisma ORM · PostgreSQL · MySQL · Neo4j · REST APIs · bcrypt & HMAC sessions
-
-**AI** — Google Gemini (vision + text), prompt design and model fallback chains
+**Backend & data** — Node.js · Prisma ORM · PostgreSQL · MySQL · Neo4j · REST APIs
 
 **Testing & tooling** — pytest · Selenium · Git · GitHub Actions · Vercel
 
@@ -137,8 +133,7 @@ Software Engineering
 
 **Languages:** Spanish (native) · English (B2) · French (basic)
 
-Away from the keyboard, I played basketball for the **Mexican national team** and represented México in
-international competition in Colombia. Most of what I know about preparation, losing well and showing up anyway,
-I learned there.
+Outside of this, I played basketball for the Mexican national team and represented México in an international
+competition in Colombia.
 
-Open to junior developer roles. If something here is useful to you, I'd like to hear about it.
+If something here is useful to you, I'd be glad to hear about it.
