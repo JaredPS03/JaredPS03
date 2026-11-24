@@ -38,7 +38,7 @@ A few things in the code I'd point at:
 - The README documents a measured 6.26 MB catalogue payload as a known limitation, along with the fix I haven't
   shipped yet.
 
-### 🖼 Arte de Oaxaca — E-commerce with augmented reality and CMS · 2025
+### 🖼 Arte de Oaxaca — E-commerce with augmented reality and CMS · 2025 artedeoaxaca.com.mx
 
 An online store and management panel for a gallery handling **350 artworks** in catalogue and a history of
 **3,000+ inventory and sales records**.
@@ -50,34 +50,16 @@ also integrated an augmented reality view so a buyer can see a piece on their ow
 
 > Delivered to the client; not yet in production, so there's no public demo.
 
-### 🗣 DILLA — Open repository of indigenous languages · 2026 – present
+### 🗣 DILLA — Open repository of indigenous languages · 2026 – present dilla.com.mx 
 
 An open, freely accessible platform to collect and preserve the indigenous languages of México, aimed at
 research and documentary record.
 
-`Next.js` · `PostgreSQL` · `Prisma` · [dilla-web.vercel.app](https://dilla-web.vercel.app/)
+`Next.js` · `PostgreSQL` · `Prisma`
 
 I modelled the PostgreSQL schema with Prisma and built an asynchronous moderation queue for user contributions,
 since submissions need review before they become part of a record meant for research.
 
-### 🍳 [Check — AI Kitchen Assistant](https://github.com/JaredPS03/Che-K) — [che-k.vercel.app](https://che-k.vercel.app/) · 2026
-
-A personal project. It has the most complete public codebase of the four, so it's probably the easiest one to
-actually read.
-
-`Next.js 16` · `TypeScript` · `Neo4j` · `Cypher` · `Google Gemini` · `pytest`
-
-Scan your fridge with the camera, see what you can cook tonight, and follow the recipe step by step. I used a
-graph database because the data is mostly relationships — a user has ingredients, a recipe requires them.
-
-- Recipe matching is cosine similarity over sparse ingredient vectors, written entirely in Cypher. The same
-  query returns which ingredients you have and which you're missing, so the card renders without a second
-  request.
-- Allergen filtering happens inside the query rather than on the client, so a recipe you can't eat is never sent.
-- 61 unit tests covering the matching algorithm, including the empty-pantry and division-by-zero cases.
-- The conversion from the original relational schema to the graph model is documented step by step.
-
----
 
 ## How I try to work
 
@@ -101,7 +83,7 @@ it, not while building it. Explaining code slowly is how I catch what I missed t
 
 ## Stack
 
-**Languages** — TypeScript · JavaScript · SQL · Cypher · PHP · HTML/CSS
+**Languages** — TypeScript · JavaScript · SQL · Cypher · PHP · HTML/CSS • python
 
 **Frontend** — React · Next.js (App Router) · Tailwind CSS · Radix / shadcn/ui
 
