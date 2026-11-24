@@ -13,32 +13,7 @@ Open to junior developer roles and internships.
 
 ## Projects
 
-### 🏠 [Art Auction for a Cause](https://github.com/JaredPS03/TECHO) — [techoax.art](https://www.techoax.art/) · 2026
-
-Built and deployed as a volunteer for **TECHO Oaxaca**, part of an organization that works across 19 countries
-and has built housing with more than 150,000 families in Latin America.
-
-`Next.js 16` · `TypeScript` · `MySQL` · `Tailwind CSS` · `Vercel`
-
-It replaced a process that ran on scattered WhatsApp messages and a handwritten tally of who was winning which
-piece. Public catalogue, bid registration with contact details, and an admin panel the team operates without
-touching the database — built against requirements defined with the organization.
-
-There is no payment gateway, and that was on purpose. It would have meant fees on donated money, merchant
-registration and legal responsibility over other people's funds, for an organization with no technical staff
-that already closed deals by phone. The platform handles the part that was actually failing — keeping track of
-bids — and leaves the rest where it worked.
-
-A few things in the code I'd point at:
-
-- Bids are resolved inside a transaction using `SELECT ... FOR UPDATE`. Without it, two people bidding at the
-  same time could both clear the minimum against the same stale price, and the second write would lower it.
-- The admin session cookie is signed with HMAC and compared in constant time. It used to store the admin's UUID
-  as-is, which proves the id exists but not that the cookie came from us.
-- The README documents a measured 6.26 MB catalogue payload as a known limitation, along with the fix I haven't
-  shipped yet.
-
-### 🖼 Arte de Oaxaca — E-commerce with augmented reality and CMS · 2025 artedeoaxaca.com.mx
+### 🖼 Arte de Oaxaca — E-commerce with augmented reality and CMS · 2025 https://www.artedeoaxaca.com.mx/
 
 An online store and management panel for a gallery handling **350 artworks** in catalogue and a history of
 **3,000+ inventory and sales records**.
@@ -50,7 +25,7 @@ also integrated an augmented reality view so a buyer can see a piece on their ow
 
 > Delivered to the client; not yet in production, so there's no public demo.
 
-### 🗣 DILLA — Open repository of indigenous languages · 2026 – present dilla.com.mx 
+### 🗣 DILLA — Open repository of indigenous languages · 2026 – present https://www.dilla.com.mx/
 
 An open, freely accessible platform to collect and preserve the indigenous languages of México, aimed at
 research and documentary record.
@@ -113,7 +88,7 @@ Software Engineering
 💼 [LinkedIn](https://www.linkedin.com/in/TU-USUARIO)
 -->
 
-**Languages:** Spanish (native) · English (B2) · French (basic)
+**Languages:** Spanish (native) · English (B2) · French (A2)
 
 Outside of this, I played basketball for the Mexican national team and represented México in an international
 competition in Colombia.
