@@ -36,6 +36,9 @@ I modelled the PostgreSQL schema with Prisma and built an asynchronous moderatio
 since submissions need review before they become part of a record meant for research.
 
 
+### Sistema a medida de contabilidad, contratos, administración de piezas, etc e inventario Autos Alianza Seminuevos https://alianzaseminuevos.com/
+
+
 ## How I try to work
 
 Nothing here is a principle I arrived with. They're all habits I picked up after doing the opposite first.
